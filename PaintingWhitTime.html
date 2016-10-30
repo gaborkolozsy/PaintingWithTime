@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://jsbin.com
+
+Copyright (c) 2016 by gaborkolozsy (http://jsbin.com/raboho/8/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="Painting With Time">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link href="https://fonts.googleapis.com/css?family=Exo+2:100" rel="stylesheet">
+  <title>Painting With Time</title>
+<style id="jsbin-css">
+#vaszon {
+  width: 400px;
+  height: 400px;
+  background-color: ivory;
+  margin: 0 auto;
+  box-shadow: 15px 15px 10px gray;
+}
+
+#first-row {
+  width: 100%;
+  height: 75%;
+  /*background-color: brown;*/
+}
+
+#second-row {
+  width: 100%;
+  height: 3%;
+}
+
+#third-row {
+  width: 100%;
+  height: 22%;
+}
+
+#first-column {
+  width: 22%;
+  height: 100%;
+}
+
+#second-column {
+  width: 10%;
+  height: 100%;
+}
+
+#first-little-rectangle {
+  width: 100%;
+  height: 41%;
+}
+
+#second-little-rectangle {
+  width: 100%;
+  height: 41%;
+}
+
+#first-medium-rectangle {
+  height: 40%;
+  width: 100%;
+}
+
+#second-medium-rectangle {
+  height: 52%;
+  width: 100%;
+}
+
+#third-medium-rectangle {
+  width: 62%;
+  height: 100%;
+}
+
+#fourth-medium-rectangle {
+  width: 22%;
+  height: 100%;
+}
+
+#big-rectangle {
+  width: 75%;
+  height: 100%;
+}
+
+#first-divider {
+  width: 3%;
+  height: 100%;
+}
+
+#second-divider {
+  width: 100%;
+  height: 8%;
+}
+
+#clock {
+  color: white;
+  position: relative;
+  top:  15%;
+  left: 20%;
+}
+
+#third-divider {
+  width: 3%;
+  height: 100%;
+}
+
+#fourth-divider {
+  width: 3%;
+  height: 100%;
+}
+
+#first-little-divider {
+  width: 100%;
+  height: 18%;
+}
+
+.right {
+  float: right;
+}
+
+.red {
+  background-color: red;
+}
+
+.black {
+  background-color: black;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.blue {
+  background-color: blue;
+}
+</style>
+</head>
+<body>
+  <div id="vaszon">
+    <div id="first-row">
+      <div id="big-rectangle" class="red right"></div>
+      <div id="first-divider" class="black right"></div>
+      <div id="first-column" class="right">
+        <div id="first-medium-rectangle"></div>
+        <div id="second-divider" class="black">
+          <div id="clock">00:00:00</div>
+        </div>
+        <div id="second-medium-rectangle"></div>
+      </div>
+    </div>
+    <div id="second-row" class="black"></div>
+    <div id="third-row">
+      <div id="second-column" class="right">
+        <div id="first-little-rectangle"></div>
+        <div id="first-little-divider" class="black"></div>
+        <div id="second-little-rectangle" class="yellow"></div>
+      </div>
+      <div id="third-divider" class="black right"></div>
+      <div id="third-medium-rectangle" class="right"></div>
+      <div id="fourth-divider" class="black right"></div>
+      <div id="fourth-medium-rectangle" class="blue rigth"></div>
+    </div>
+  </div>
+<script id="jsbin-javascript">
+function colorClock() {
+  var date = new Date();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var n = seconds;
+  
+  document.getElementById('big-rectangle').style.background = rgbToHex(255 - seconds, 0, 0);
+  document.getElementById('first-medium-rectangle').style.background = rgbToHex(255, 255, 196 + seconds);
+  document.getElementById('second-medium-rectangle').style.background = rgbToHex(255, 255, 196 - seconds * 2);
+  document.getElementById('third-medium-rectangle').style.background = rgbToHex(255, 255 - seconds, 196 - seconds * 3);
+  document.getElementById('fourth-medium-rectangle').style.background = rgbToHex(0, 0, 196 + seconds);
+  document.getElementById('first-little-rectangle').style.background = rgbToHex(255 - seconds, 255 - seconds, 196);
+  document.getElementById('second-little-rectangle').style.background = rgbToHex(255, 255 - seconds, 0);
+
+  if (hours < 10) {
+    hours = "0" + hours;
+  }
+
+  if (minutes < 10) {
+    minutes = '0' + minutes;
+  }
+
+  if (seconds < 10) {
+    seconds = '0' + seconds;
+    
+  }
+
+  var clockFace = hours + ':' + minutes + ':' + seconds;
+  document.getElementById('clock').innerHTML = clockFace;
+  
+  setTimeout(function() {
+    colorClock();
+  }, 1000);
+  
+}
+
+function rgbToHex(r, g, b) {
+  return '#' + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? '0' + hex : hex;
+}
+
+colorClock();
+</script>
+</body>
+</html>
