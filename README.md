@@ -7,4 +7,4 @@ Practice on codeberry web editing course.
 
 ![Screenshot](https://github.com/gaborkolozsy/PaintingWithTime/blob/master/Painting-with-Time.png)
 
-<a class="jsbin-embed" href="http://jsbin.com/raboho/8/embed">PaintingWithTime on jsbin.com</a>
+<a href="http://jsbin.com/raboho/8/embed">PaintingWithTime on jsbin.com</a>
